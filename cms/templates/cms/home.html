@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方寸之间</title>
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .news-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .news-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .news-content {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">方寸之间</h1>
+        <div class="news-list">
+            {% for article in articles %}
+                <div class="news-item">
+                    <h2 class="news-title"><a href="{% url 'article_detail' pk=article.pk %}">{{ article.title }}</a></h2>
+                    <p class="news-content">{{ article.content|truncatewords:30 }}</p>
+                </div>
+            {% empty %}
+                <p>没有找到文章。</p>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- 引入Bootstrap JS, Popper.js, 和 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
